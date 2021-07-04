@@ -11,7 +11,7 @@ A python package for better update and manage your debian packages.
 
 ## Introduction
 
-When you run "apt list --upgradable" in your terminal, you find around 2000 upgradable packages (if you are using parrot os or kali lim=nux like distibution). It hard to find your important package or security releases.  
+When you run "apt list --upgradable" in your terminal, you find around 2000 upgradable packages (if you are using parrot os or kali linux like distibution). It hard to find your important package or security releases.  
 
 For this solution, here is "sachet".
 
