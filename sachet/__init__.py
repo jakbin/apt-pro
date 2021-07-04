@@ -151,7 +151,8 @@ def main(cwd=None):
 			sep = ", "
 
 			c = sep.join(not_found_pkgs)
-			print(f"[bold bright_red]{c}[/bold bright_red] not found in your list")
+			if c!="":
+			    print(f"[bold bright_red]{c}[/bold bright_red] not found in your list")
 
 			a = sep.join(imp_pkg)
 
