@@ -10,27 +10,27 @@ def main(cwd=None):
 
 	my_parser = argparse.ArgumentParser(description="check, update and upgrade your packages from here")
 
-	my_parser.add_argument('-list',
+	my_parser.add_argument('-l','-list',
 							action="store_true",
 							dest="list",
 							help='check list of upgradable packages from your list')
 
-	my_parser.add_argument("-update",
+	my_parser.add_argument('-ud',"-update",
 							action="store_true",
 							dest="update",
 							help="update your full packages list")
 
-	my_parser.add_argument("-mylist", 
+	my_parser.add_argument('-ml',"-mylist", 
 							action="store_true",
 							dest="mylist",
 							help="print your list")
 
-	my_parser.add_argument("-add",
+	my_parser.add_argument('-a',"-add",
 							metavar="packages", 
 							nargs="*",
 							help="add packages in your list")
 
-	my_parser.add_argument("-remove",
+	my_parser.add_argument('-r',"-remove",
 							metavar="packages", 
 							nargs="*",
 							help="remove packages from your list")
@@ -41,12 +41,11 @@ def main(cwd=None):
 	list = bool(args.list)
 	update = bool(args.update)
 	mylist= bool(args.mylist)
-	add = bool(args.add)
-	remove = bool(args.remove)
+	add = bool(args.a)
+	remove = bool(args.r)
 
 	here = os.path.dirname(__file__)
 	file = os.path.join(here,"a.txt")
-
 
 
 	if (args.list):
@@ -83,11 +82,12 @@ def main(cwd=None):
 			f.close()
 
 		imp_pkg = re.sub("[^\w]"," ", add).split()	
-		print(f"[bold bright_cyan]{imp_pkg}[/bold bright_cyan]")	
-	elif update:
-		print("upgradable")
+		print(f"[bold bright_cyan]{imp_pkg}[/bold bright_cyan]")
 
-	elif (args.add)==[] or (args.add)!=None:
+	elif update:
+		os.system('sudo apt update')
+
+	elif (args.a)==[] or (args.a)!=None:
 
 		if (add):
 			with open(file) as f:
@@ -100,7 +100,7 @@ def main(cwd=None):
 
 			not_found_pkgs = []
 
-			for i in (args.add):
+			for i in (args.a):
 				if i in imp_pkg:
 					found_pkgs.append(i)
 				else:
@@ -127,7 +127,7 @@ def main(cwd=None):
 		else:
 			print("[bold bright_red]no package given[/bold bright_red]")	
 
-	elif (args.remove)==[] or (args.remove)!=None:
+	elif (args.r)==[] or (args.r)!=None:
 
 		if (remove):
 			with open(file) as f:
@@ -139,7 +139,7 @@ def main(cwd=None):
 			not_found_pkgs = []
 			removal_pkgs = []
 
-			for i in (args.remove):
+			for i in (args.r):
 				try:
 					imp_pkg.remove(i)
 					removal_pkgs.append(i)
