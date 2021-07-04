@@ -110,7 +110,7 @@ def main(cwd=None):
 			a = sep.join(found_pkgs)
 
 			if a!="":
-				print(f"[bold bright_red]{a}[/bold bright_red] already in list")		
+				print(f"[bold bright_red]{a}[/bold bright_red] already in your list")		
 			
 			imp_pkg.extend(not_found_pkgs)
 

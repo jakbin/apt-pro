@@ -1,1 +1,1 @@
-chromium, firefox, linux, sudo, tor
+chromium, firefox, sudo, tor
