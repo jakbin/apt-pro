@@ -56,6 +56,7 @@ def main(cwd=None):
 	add = bool(args.a)
 	remove = bool(args.r)
 	version = bool(args.version)
+	new = bool(args.new)
 
 	here = os.path.dirname(__file__)
 	file = os.path.join(here,"a.txt")
