@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="sachet",
-    version="1.0.2",
+    version="1.0.4",
     author="Jak Bin",
     description="A python package for better update and manage your debian packages.",
     long_description=long_description,

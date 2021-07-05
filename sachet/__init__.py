@@ -1,4 +1,4 @@
-__version__ = "1.0.2"
+__version__ = "1.0.4"
 
 import argparse
 import os
@@ -42,6 +42,11 @@ def main(cwd=None):
 							dest="version",
 							help="check version of sachet")
 
+	my_parser.add_argument("-new",
+						action="store_true",
+						dest="new",
+						help="update sachet to latest version")
+
 
 	args = my_parser.parse_args()
 
@@ -50,7 +55,7 @@ def main(cwd=None):
 	mylist= bool(args.mylist)
 	add = bool(args.a)
 	remove = bool(args.r)
-	version = bool(args.v)
+	version = bool(args.version)
 
 	here = os.path.dirname(__file__)
 	file = os.path.join(here,"a.txt")
@@ -174,8 +179,11 @@ def main(cwd=None):
 		else:
 			print("[bold bright_red]no package given[/bold bright_red]")
 
-	elif mylist:
+	elif version:
 		print(__version__)
+
+	elif new:
+		os.system("pip3 install sachet --upgrade")
 
 	else:
 		print("run sachet -h for help")
