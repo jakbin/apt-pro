@@ -37,6 +37,7 @@ sachet -h
 
 ## Todo-List 
 
-- [ ] Pretty Output 
+- [x] Pretty Output 
 - [ ] Update and upgrade packages from Here
 - [x] Add or Remove packages form list
+- [ ] Use sqlite 

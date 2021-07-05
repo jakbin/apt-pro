@@ -1,3 +1,5 @@
+__version__ = "1.0.1"
+
 import argparse
 import os
 import re
@@ -35,6 +37,11 @@ def main(cwd=None):
 							nargs="*",
 							help="remove packages from your list")
 
+	my_parser.add_argument('-v',"-version",
+							action="store_true",
+							dest="version",
+							help="check version of sachet")
+
 
 	args = my_parser.parse_args()
 
@@ -43,6 +50,7 @@ def main(cwd=None):
 	mylist= bool(args.mylist)
 	add = bool(args.a)
 	remove = bool(args.r)
+	version = bool(args.v)
 
 	here = os.path.dirname(__file__)
 	file = os.path.join(here,"a.txt")
@@ -165,6 +173,9 @@ def main(cwd=None):
 				print(f"[bold bright_magenta]{b}[/bold bright_magenta] removed from your list")
 		else:
 			print("[bold bright_red]no package given[/bold bright_red]")
+
+	elif mylist:
+		print(__version__)
 
 	else:
 		print("run sachet -h for help")
