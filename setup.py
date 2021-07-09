@@ -4,15 +4,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="jk",
+    name="jkb",
     version="1.0.0",
-    author="Jak Bin",
+    author="Jjkb Bin",
     description="A python package for better update and manage your debian packages.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jakbin/jk",
+    url="https://github.com/jjkbbin/jkb",
     project_urls={
-        "Bug Tracker": "https://github.com/jakbin/jk/issues",
+        "Bug Tracker": "https://github.com/jjkbbin/jkb/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -24,17 +24,17 @@ setuptools.setup(
     
     install_requires=['rich==10.3.0'],
     
-    packages=["jk"],
+    packages=["jkb"],
     
     package_data={
-        "jk":[
+        "jkb":[
             "a.txt"
         ]
     },
     
     entry_points={
         "console_scripts":[
-            "jk = jk:main"
+            "jkb = jkb:main"
         ]
     }
 )
