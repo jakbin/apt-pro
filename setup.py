@@ -4,15 +4,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sachet",
-    version="1.0.4",
+    name="jk",
+    version="1.0.0",
     author="Jak Bin",
     description="A python package for better update and manage your debian packages.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jakbin/sachet",
+    url="https://github.com/jakbin/jk",
     project_urls={
-        "Bug Tracker": "https://github.com/jakbin/sachet/issues",
+        "Bug Tracker": "https://github.com/jakbin/jk/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -24,17 +24,17 @@ setuptools.setup(
     
     install_requires=['rich==10.3.0'],
     
-    packages=["sachet"],
+    packages=["jk"],
     
     package_data={
-        "sachet":[
+        "jk":[
             "a.txt"
         ]
     },
     
     entry_points={
         "console_scripts":[
-            "sachet = sachet:main"
+            "jk = jk:main"
         ]
     }
 )

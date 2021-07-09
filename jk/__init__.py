@@ -1,4 +1,4 @@
-__version__ = "1.0.4"
+__version__ = "1.0.0"
 
 import argparse
 import os
@@ -77,12 +77,13 @@ def main(cwd=None):
 		up_list_pkg = []
 
 		for pkg in imp_pkg:
-			# if pkg in str(outputs):
-			if re.search(r'\b' + pkg + r'\b', str(outputs)):
+			if pkg in str(outputs):
+			# if re.search(r'\b' + pkg + r'\b', str(outputs)):
 				console.print(f"[bold bright_red]{pkg}[/bold bright_red] found on")
 				up_list_pkg.append(pkg)
 				for i in outputs:
-					if pkg in i:
+					#if pkg in i:
+					if i.startswith(pkg):
 						print(f"[bold bright_blue]->[/bold bright_blue] [bold yellow]{i}[/bold yellow]")
 			else:
 				list_pkg.append(pkg)
