@@ -38,6 +38,6 @@ jkb -h
 ## Todo-List 
 
 - [x] Pretty Output 
-- [ ] Update and upgrade packages from Here
+- [x] Update and upgrade packages from Here
 - [x] Add or Remove packages form list
 - [ ] Use sqlite 
