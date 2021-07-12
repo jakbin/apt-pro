@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="jkb",
-    version="1.0.0",
+    version="1.0.1",
     author="Jjkb Bin",
     description="A python package for better update and manage your debian packages.",
     long_description=long_description,

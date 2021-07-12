@@ -1,8 +1,9 @@
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 import argparse
 import os
 import re
+from click import confirm
 from rich import print
 from rich.console import Console
 console = Console()
@@ -21,6 +22,11 @@ def main(cwd=None):
 							action="store_true",
 							dest="update",
 							help="update your full packages list")
+
+	my_parser.add_argument('-ug',"-upgrade",
+							action="store_true",
+							dest="upgrade",
+							help="upgrade your packages")
 
 	my_parser.add_argument('-ml',"-mylist", 
 							action="store_true",
@@ -52,6 +58,7 @@ def main(cwd=None):
 
 	list = bool(args.list)
 	update = bool(args.update)
+	upgrade = bool(args.upgrade)
 	mylist= bool(args.mylist)
 	add = bool(args.a)
 	remove = bool(args.r)
@@ -90,6 +97,51 @@ def main(cwd=None):
 
 		print(f"List of packages, thats are already up to date =  \n[bold bright_cyan]{list_pkg}[/bold bright_cyan]")	
 		print("")
+
+	elif upgrade:
+		pkg_list = os.popen("apt list --upgradable")
+		outputs = pkg_list.readlines()
+
+		with open(file) as f:
+			add = f.read()
+			f.close()
+
+		imp_pkg = re.sub("[^\w]"," ", add).split()
+
+		list_pkg = []
+
+		up_list_pkg = []
+
+		for pkg in imp_pkg:
+			if pkg in str(outputs):
+				# console.print(f"[bold bright_red]{pkg}[/bold bright_red] found on")
+				for i in outputs:
+					if i.startswith(pkg):
+						up_list_pkg.append(i)
+						print(f"[bold bright_blue]->[/bold bright_blue] [bold yellow]{i}[/bold yellow]")
+
+		upgrade_list_pkg = []
+
+		for pkg in up_list_pkg:
+			a = pkg.split('/')[0]
+			upgrade_list_pkg.append(a)
+
+		choice_pkg = []
+
+		for choice in upgrade_list_pkg:
+			if confirm(f"Do you want upgrade {choice}", default=True):
+				choice_pkg.append(choice)
+			else:
+				pass	
+
+		sep = " "
+		b = sep.join(choice_pkg)
+		
+		if choice_pkg != []:
+			if os.geteuid() == 0:
+				os.system(f"apt install {b}") 
+			else:
+				os.system(f"sudo apt install {b}")
 
 	elif mylist:
 		with open(file) as f:
