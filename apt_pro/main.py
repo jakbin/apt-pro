@@ -63,12 +63,11 @@ def add_pkg(packages):
             try:
                 cache[pkg].name
                 cursor.execute("INSERT INTO pkgs (id, pkg_name) VALUES (NULL, ?)", (pkg,),)
-                conn.commit()
-                conn.close()
                 print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] added in your list\n")
             except KeyError:
                 print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] did not found in apt database")
-            
+    conn.commit()
+    conn.close()
     sep = ", "
     c = sep.join(found_pkgs)
     if c!="":
@@ -91,14 +90,13 @@ def remove_pkg(packages):
             print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{i}[/bold yellow] founded in your list")
             try:
                 cursor.execute("DELETE FROM pkgs WHERE pkg_name = ?", (i,),)
-                conn.commit()
-                conn.close()
                 removal_pkgs.append(i)
             except sqlite3.ProgrammingError as e:
                 print(e)            
         else:
             not_found_pkgs.append(i)
-
+    conn.commit()
+    conn.close()
     sep = ", "
 
     c = sep.join(not_found_pkgs)
