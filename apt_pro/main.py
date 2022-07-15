@@ -2,13 +2,27 @@ import os
 import sqlite3
 from rich import print
 import apt
+from pathlib import Path
+from shutil import copy2
 
 cache = apt.Cache()
 
 db_path = os.path.dirname(__file__)
 dbFile = os.path.join(db_path,"apt-pro.db")
 
-conn  = sqlite3.connect(dbFile)
+home_path = Path.home()
+if os.path.isfile(os.path.join(home_path, ".apt-pro/apt-pro.db")):
+    db = os.path.join(home_path, ".apt-pro/apt-pro.db")
+else:
+    if os.path.isdir(os.path.join(home_path, '.apt-pro')):
+        copy2(dbFile,os.path.join(home_path, ".apt-pro"))
+        db = os.path.join(home_path, ".apt-pro/apt-pro.db")
+    else:
+        os.mkdir(os.path.join(home_path, '.apt-pro'))
+        copy2(dbFile,os.path.join(home_path, ".apt-pro"))
+        db = os.path.join(home_path, ".apt-pro/apt-pro.db")
+
+conn  = sqlite3.connect(db)
 cursor = conn.cursor()
 
 def mylist():
