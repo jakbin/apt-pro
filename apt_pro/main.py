@@ -77,11 +77,12 @@ def add_pkg(packages):
             try:
                 cache[pkg].name
                 cursor.execute("INSERT INTO pkgs (id, pkg_name) VALUES (NULL, ?)", (pkg,),)
-                print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] added in your list\n")
+                print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] added in your list")
             except KeyError:
-                print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] did not found in apt database")
+                print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg}[/bold yellow] [bold bright_red]did not found in apt database[/bold bright_red]")
     conn.commit()
     conn.close()
+    print("")
     sep = ", "
     c = sep.join(found_pkgs)
     if c!="":
@@ -145,10 +146,11 @@ def upgrade_pkg():
         a = pkg.split('/')[0]
         upgrade_list_pkg.append(a)
 
+    print("")
     choice_pkg = []
     for pkg in upgrade_list_pkg:
         yes = {'yes','y','ye',''}
-        choice = input(f"Do you want change filename {pkg} [Y/n]: ").lower()
+        choice = input(f"Do you want upgrade {pkg} [Y/n]: ").lower()
         if choice in yes:
             choice_pkg.append(pkg)
         else:
