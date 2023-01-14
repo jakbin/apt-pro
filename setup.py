@@ -1,5 +1,5 @@
 import setuptools
-from apt_pro.cli import __version__
+from apt_pro import __version__
 
 with open("README.md", "r", encoding="utf-8") as readme_file:
     readme = readme_file.read()

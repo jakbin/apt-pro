@@ -150,7 +150,7 @@ def upgrade_pkg():
     choice_pkg = []
     for pkg in upgrade_list_pkg:
         yes = {'yes','y','ye',''}
-        choice = input(f"Do you want upgrade {pkg} [Y/n]: ").lower()
+        choice = input(f"Do you want upgrade [bold yellow]{pkg}[/bold yellow] [Y/n]: ").lower()
         if choice in yes:
             choice_pkg.append(pkg)
         else:
