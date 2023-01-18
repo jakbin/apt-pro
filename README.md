@@ -14,7 +14,12 @@ When you run "apt list --upgradable" in your terminal, you find around 1000 upgr
 
 For this solution, here is "apt-pro".
 
+## Demo
+
+![Downloads](demo/demo.png)
+
 ## Compatability
+
 Python 3.6+ is required.
 
 ## Installation
@@ -22,6 +27,7 @@ Python 3.6+ is required.
 ```sh
 pip install apt-pro
 ```
+
 or 
 
 ```sh
@@ -34,7 +40,7 @@ pip3 install apt-pro
 apt-pro -h
 ```
 
-## Todo-List 
+## Todo-List
 
 - [x] Pretty Output 
 - [x] Update and upgrade packages from Here
