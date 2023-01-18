@@ -1,9 +1,10 @@
 import os
+import apt
 import sqlite3
 from rich import print
-import apt
 from pathlib import Path
 from shutil import copy2
+from rich.prompt import Prompt
 
 cache = apt.Cache()
 
@@ -150,7 +151,7 @@ def upgrade_pkg():
     choice_pkg = []
     for pkg in upgrade_list_pkg:
         yes = {'yes','y','ye',''}
-        choice = input(f"Do you want upgrade [bold yellow]{pkg}[/bold yellow] [Y/n]: ").lower()
+        choice = Prompt.ask(f"Do you want upgrade [bold yellow]{pkg}[/bold yellow] [Y/n]: ").lower()
         if choice in yes:
             choice_pkg.append(pkg)
         else:
