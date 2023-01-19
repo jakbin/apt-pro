@@ -2,6 +2,7 @@
 
 A python package for better update and manage your debian packages.
 
+[![Python package](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml/badge.svg)](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml)
 [![PyPI version](https://badge.fury.io/py/apt-pro.svg)](https://badge.fury.io/py/apt-pro)
 [![Downloads](https://pepy.tech/badge/apt-pro/month)](https://pepy.tech/project/apt-pro)
 [![Downloads](https://static.pepy.tech/personalized-badge/apt-pro?period=total&units=international_system&left_color=green&right_color=blue&left_text=Total%20Downloads)](https://pepy.tech/project/apt-pro)

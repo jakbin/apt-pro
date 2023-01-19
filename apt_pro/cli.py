@@ -50,7 +50,7 @@ def main(argv = None):
     elif args.command == "update":
         return mylist()
     elif args.command == "new":
-        return new()
+        return upgrade_apt_pro()
     elif args.version:
         return __version__
     else:

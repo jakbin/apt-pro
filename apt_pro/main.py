@@ -151,7 +151,7 @@ def upgrade_pkg():
     choice_pkg = []
     for pkg in upgrade_list_pkg:
         yes = {'yes','y','ye',''}
-        choice = Prompt.ask(f"Do you want upgrade [bold yellow]{pkg}[/bold yellow] [Y/n]: ").lower()
+        choice = Prompt.ask(f"Do you want upgrade [bold yellow]{pkg}[/bold yellow] [Y/n]").lower()
         if choice in yes:
             choice_pkg.append(pkg)
         else:
@@ -166,5 +166,5 @@ def upgrade_pkg():
         else:
             os.system(f"sudo apt install {b}")
 
-def upgrade_jpt():
+def upgrade_apt_pro():
     os.system("pip3 install apt-pro --upgrade")
