@@ -17,7 +17,10 @@ For this solution, here is "apt-pro".
 
 ## Demo
 
-![Downloads](demo/demo.png)
+![Demo](demo/demo.png)
+
+### Add and Remove package from your list
+![Demo](demo/demo2.png)
 
 ## Compatability
 
