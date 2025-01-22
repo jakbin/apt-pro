@@ -162,9 +162,9 @@ def upgrade_pkg():
     
     if choice_pkg != []:
         if os.geteuid() == 0:
-            os.system(f"apt install {b}") 
+            os.system(f"apt install {b} -y") 
         else:
-            os.system(f"sudo apt install {b}")
+            os.system(f"sudo apt install {b} -y")
 
 def upgrade_apt_pro():
     os.system("pip3 install apt-pro --upgrade")
