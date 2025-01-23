@@ -3,7 +3,7 @@
 A python package for better update and manage your debian packages.
 
 [![Python package](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml/badge.svg)](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml)
-[![PyPI version](https://badge.fury.io/py/apt-pro.svg)](https://badge.fury.io/py/apt-pro)
+[![PyPI version](https://badge.fury.io/py/apt-pro.svg)](https://pypi.org/project/apt-pro)
 [![Downloads](https://pepy.tech/badge/apt-pro/month)](https://pepy.tech/project/apt-pro)
 [![Downloads](https://static.pepy.tech/personalized-badge/apt-pro?period=total&units=international_system&left_color=green&right_color=blue&left_text=Total%20Downloads)](https://pepy.tech/project/apt-pro)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/jakbin/apt-pro)
@@ -21,6 +21,9 @@ For this solution, here is "apt-pro".
 
 ### Add and Remove package from your list
 ![Demo](demo/demo2.png)
+
+### Upgrade packages matching a pattern only from apt upgradable list
+![Demo](demo/demo3.png)
 
 ## Compatability
 
