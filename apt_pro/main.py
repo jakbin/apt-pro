@@ -1,4 +1,5 @@
 import os
+import re
 import apt
 import sqlite3
 from rich import print
@@ -165,6 +166,51 @@ def upgrade_pkg():
             os.system(f"apt install {b} -y") 
         else:
             os.system(f"sudo apt install {b} -y")
+
+def upgrade_pkg_regex(pattern):
+    # pkgs = cursor.execute("SELECT pkg_name FROM pkgs ORDER BY pkg_name").fetchall()
+
+    # Convert pattern from glob-style to regex
+    # Replace * with .* for regex matching
+    regex_pattern = pattern.replace('*', '.*')
+
+    print(f"[bold bright_cyan]Checking packages matching pattern: {pattern}[/bold bright_cyan]\n")
+
+    upgrade_list_pkg = []
+
+    for pkg_name in cache.keys():
+        if re.match(regex_pattern, pkg_name):
+            pkg = cache[pkg_name]
+            if pkg.is_upgradable:
+                upgrade_list_pkg.append(pkg.name)
+                current_version = pkg.installed.version if pkg.installed else "not installed"
+                candidate_version = pkg.candidate.version
+                
+                print(f"[bold bright_red]->[/bold bright_red] [bold yellow]{pkg_name}[/bold yellow] "
+                      f"{pkg.architecture()} "
+                      f"{candidate_version}, (upgradable from: {current_version})")
+
+
+    if not upgrade_list_pkg:
+        print(f"\n[bold bright_red]No upgradable packages found matching pattern: {pattern}[/bold bright_red]")
+        return
+
+    print(f"\n[bold bright_cyan]Found {len(upgrade_list_pkg)} packages to upgrade[/bold bright_cyan]")
+    
+    # Ask for confirmation before upgrading
+    yes = {'yes', 'y', 'ye', ''}
+    choice = Prompt.ask(
+        f"Do you want to upgrade all matching packages? [Y/n]"
+    ).lower()
+
+    if choice in yes:
+        packages_to_upgrade = " ".join(upgrade_list_pkg)
+        if os.geteuid() == 0:
+            os.system(f"apt install {packages_to_upgrade} -y")
+        else:
+            os.system(f"sudo apt install {packages_to_upgrade} -y")
+    else:
+        print("\n[bold yellow]Upgrade cancelled[/bold yellow]")
 
 def upgrade_apt_pro():
     os.system("pip3 install apt-pro --upgrade")

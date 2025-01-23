@@ -8,7 +8,9 @@ example_uses = '''example:
    apt-pro list
    apt-pro mylist
    apt-pro add package_name
-   apt-pro remove package_name'''
+   apt-pro remove package_name
+   apt-pro install kali-*
+   apt-pro install "xfce4*"'''
 
 def main(argv = None):
     parser = argparse.ArgumentParser(prog=package_name, description="check, update and upgrade your packages from your custom list", epilog=example_uses, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -27,6 +29,9 @@ def main(argv = None):
     updateapt_parser = subparsers.add_parser('update', help="update your apt packages list")
 
     upgradepkg_parser = subparsers.add_parser('upgrade', help="upgrade your packages from your custom list")
+
+    upgrade_pattern_parser = subparsers.add_parser('install', help="upgrade packages matching a pattern only from apt upgradable list (e.g., 'kali-*', 'xfce4-*')")
+    upgrade_pattern_parser.add_argument("pattern", help="pattern to match package names (supports wildcards, e.g., 'kali-*')")
 
     newJkb_parser = subparsers.add_parser('new', help="upgrade apt-pro to latest version")    
 
@@ -47,6 +52,8 @@ def main(argv = None):
         return remove_pkg(args.packages)
     elif args.command == "upgrade":
         return upgrade_pkg()
+    elif args.command == "install":
+        return upgrade_pkg_regex(args.pattern)
     elif args.command == "update":
         return mylist()
     elif args.command == "new":
