@@ -12,6 +12,7 @@ example_uses = '''example:
    apt-pro install kali-*
    apt-pro install "xfce4*"'''
 
+
 def main(argv = None):
     parser = argparse.ArgumentParser(prog=package_name, description="check, update and upgrade your packages from your custom list", epilog=example_uses, formatter_class=argparse.RawDescriptionHelpFormatter)
     subparsers = parser.add_subparsers(dest="command")
@@ -33,9 +34,9 @@ def main(argv = None):
     upgrade_pattern_parser = subparsers.add_parser('install', help="upgrade packages matching a pattern only from apt upgradable list (e.g., 'kali-*', 'xfce4-*')")
     upgrade_pattern_parser.add_argument("pattern", help="pattern to match package names (supports wildcards, e.g., 'kali-*')")
 
-    newJkb_parser = subparsers.add_parser('new', help="upgrade apt-pro to latest version")    
+    subparsers.add_parser('new', help="upgrade apt-pro to latest version")
 
-    parser.add_argument('-v',"--version",
+    parser.add_argument('-v', "--version",
                             action="store_true",
                             dest="version",
                             help="check version of deb")
@@ -62,6 +63,7 @@ def main(argv = None):
         return __version__
     else:
         parser.print_help()
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
