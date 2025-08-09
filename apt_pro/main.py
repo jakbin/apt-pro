@@ -1,6 +1,5 @@
 import os
 import re
-import apt
 import sqlite3
 import subprocess
 from rich import print
@@ -8,6 +7,12 @@ from rich.tree import Tree
 from pathlib import Path
 from shutil import copy2
 from rich.prompt import Prompt
+
+try:
+    import apt
+except ImportError:
+    print("[bold bright_red]Error:[/bold bright_red] apt module not found. Please install it with [bold yellow]sudo apt install python3-apt[/bold yellow]")
+    exit(1)
 
 cache = apt.Cache()
 
