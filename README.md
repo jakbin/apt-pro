@@ -1,6 +1,6 @@
 # 📦 apt-pro
 
-A Python package for better update and manage your Debian packages.
+A Python package for better update and manage your Debian packages. An smarter & interactive APT helper for Debian-based systems: maintain a custom watch list, resume interrupted upgrades, filter by patterns, explore dependencies/reverse deps, and upgrade with confidence
 
 [![Python package](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml/badge.svg)](https://github.com/jakbin/apt-pro/actions/workflows/publish.yml)
 [![PyPI version](https://badge.fury.io/py/apt-pro.svg)](https://pypi.org/project/apt-pro)
@@ -10,6 +10,8 @@ A Python package for better update and manage your Debian packages.
 ![GitHub last commit](https://img.shields.io/github/last-commit/jakbin/apt-pro)
 
 ## 🎯 Introduction
+
+Drowning in hundreds of upgradable packages? apt-pro lets you spotlight your critical ones, inspect their dependency graph, and upgrade them cleanly—without the noise.
 
 When you run `apt list --upgradable` in your terminal, you find around 1000 upgradable packages (if you are using Parrot OS or Kali Linux like distribution). It's hard to find your important package or security releases.  
 
@@ -45,6 +47,22 @@ For this solution, here is "apt-pro"! ✨
 ## 🔧 Compatibility
 
 Python 3.6+ is required.
+
+### 📋 Requirements
+
+- Debian / Ubuntu / Kali / Parrot (any Debian-based distribution with APT)
+- System package: `python3-apt` (usually preinstalled on Debian-based systems)
+- Python package: `rich` (installed automatically as a dependency)
+- APT tools available: `apt`, `apt-cache`
+- (Recommended) sudo privileges for installing/upgrading system packages
+- Internet access for fetching package metadata
+- SQLite (bundled with Python stdlib) for persistent storage
+
+If `python3-apt` is missing you can install it with:
+
+```sh
+sudo apt install python3-apt
+```
 
 ## 📥 Installation
 
