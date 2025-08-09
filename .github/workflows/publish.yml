@@ -11,10 +11,12 @@ jobs:
     steps:
 
     - uses: actions/checkout@v2
+
     - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      run: |
+        sudo apt update
+        sudo apt install python3 python3-pip python3-venv -y
+        python -m pip install --upgrade pip
 
     - name: Extract version
       id: get_version
@@ -22,7 +24,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt install python3-apt
+        sudo apt update
+        sudo apt install python3-apt -y
         python -m pip install --upgrade pip
         python -m pip install rich
         pip install setuptools wheel twine flake8
